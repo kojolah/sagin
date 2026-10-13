@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAGIN — Beauty & Lifestyle Content Creator</title>
+    
+    <!-- SEO & Open Graph Meta Tags -->
+    <meta name="description" content="Official rate card and media kit of SAGIN, a beauty and lifestyle content creator.">
+    <meta property="og:title" content="SAGIN — Beauty & Lifestyle Content Creator">
+    <meta property="og:description" content="Official rate card and media kit of SAGIN, a beauty and lifestyle content creator.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://raw.githubusercontent.com/aqiill/sagin/refs/heads/main/assets/2.jpeg">
+    
+    <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/aqiill/sagin/refs/heads/main/assets/2.jpeg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config for Custom Colors & Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#426B4D',
+                        secondary: '#8EAF82',
+                        bgivory: '#FAFAF2',
+                        accent: '#D4CE61',
+                        textdark: '#26352B',
+                    },
+                    fontFamily: {
+                        heading: ['"Playfair Display"', 'serif'],
+                        body: ['"Inter"', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'spin-slow': 'spin 8s linear infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles to complement Tailwind */
+        body {
+            background-color: #FAFAF2;
+            color: #26352B;
+        }
+
+        /* Scroll Reveal Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Subtle Image Zoom on Hover */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom-container img {
+            transition: transform 0.6s ease;
+        }
+        .img-zoom-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAFAF2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8EAF82;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #426B4D;
+        }
+
+        /* Decorative thin borders */
+        .border-decorative {
+            border: 1px solid rgba(66, 107, 77, 0.15);
+        }
+
+        /* Lightbox transitions */
+        #lightbox {
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Mobile Menu transitions */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-100%);
+        }
+        #mobile-menu.open {
+            transform: translateY(0);
+        }
+
+        /* Accordion transitions */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px; /* Arbitrary large number */
+            padding-bottom: 1.5rem;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-body antialiased selection:bg-secondary selection:text-white relative">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-bgivory/80 backdrop-blur-md border-b border-primary/10 py-4">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#" class="font-heading text-2xl font-bold tracking-wider text-primary">SAGIN</a>
+            
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="#about" class="hover:text-primary transition-colors">About</a>
+                <a href="#services" class="hover:text-primary transition-colors">Services</a>
+                <a href="#portfolio" class="hover:text-primary transition-colors">Portfolio</a>
+                <a href="#ratecard" class="hover:text-primary transition-colors">Rate Card</a>
+                <a href="#contact" class="px-5 py-2 bg-primary text-white rounded-full hover:bg-textdark transition-colors">Contact</a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button id="hamburger-btn" class="md:hidden text-primary focus:outline-none" aria-label="Menu">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-bgivory pt-24 px-6 flex flex-col space-y-6 text-xl font-heading md:hidden border-b border-primary/10 shadow-lg pb-8 h-auto">
+        <a href="#about" class="mobile-link text-textdark hover:text-primary transition-colors border-b border-primary/10 pb-2">About</a>
+        <a href="#services" class="mobile-link text-textdark hover:text-primary transition-colors border-b border-primary/10 pb-2">Services</a>
+        <a href="#portfolio" class="mobile-link text-textdark hover:text-primary transition-colors border-b border-primary/10 pb-2">Portfolio</a>
+        <a href="#ratecard" class="mobile-link text-textdark hover:text-primary transition-colors border-b border-primary/10 pb-2">Rate Card</a>
+        <a href="#contact" class="mobile-link text-textdark hover:text-primary transition-colors border-b border-primary/10 pb-2">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-32 px-6 md:px-12 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12 lg:gap-20 relative">
+        <!-- Decorative subtle element -->
+        <div class="absolute top-40 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-20 left-10 w-72 h-72 bg-secondary/10 rounded-full blur-3xl -z-10"></div>
+
+        <!-- Left Content -->
+        <div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left reveal">
+            <span class="text-xs font-semibold tracking-[0.2em] text-secondary mb-4 uppercase">Beauty • Lifestyle • Content Creator</span>
+            <h1 class="font-heading text-6xl md:text-7xl lg:text-8xl font-bold text-primary mb-4 leading-tight">SAGIN</h1>
+            <h2 class="text-xl md:text-2xl font-heading text-textdark mb-6 italic">Beauty & Lifestyle Content Creator</h2>
+            <p class="text-textdark/80 max-w-md mb-8 leading-relaxed">
+                Konten natural, fresh, dan relatable yang membantu brand terhubung dengan audiens melalui visual yang autentik dan engaging.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="#ratecard" class="px-8 py-3 bg-primary text-white rounded-full text-sm font-medium hover:bg-textdark transition-colors shadow-md text-center">Lihat Rate Card</a>
+                <a href="#contact" class="px-8 py-3 bg-transparent border border-primary text-primary rounded-full text-sm font-medium hover:bg-primary/5 transition-colors text-center">Hubungi Saya</a>
+            </div>
+        </div>
+
+        <!-- Right Image -->
+        <div class="w-full md:w-1/2 relative reveal">
+            <!-- Decorative Frame -->
+            <div class="absolute -inset-4 md:-inset-6 border border-secondary/30 rounded-t-full rounded-b-2xl z-0 pointer-events-none"></div>
+            <!-- Main Image Wrapper -->
+            <!-- Replace with actual creator photo: assets/images/hero.jpg -->
+            <div class="relative w-full aspect-[4/5] rounded-t-full rounded-b-2xl overflow-hidden shadow-xl z-10 bg-white">
+                <img src="https://raw.githubusercontent.com/aqiill/sagin/refs/heads/main/assets/2.jpeg" alt="Sagin Portrait" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white px-6 md:px-12">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+            <div class="w-full md:w-5/12 reveal img-zoom-container rounded-2xl overflow-hidden shadow-lg">
+                <!-- Replace with actual creator photo: assets/images/about.jpg -->
+                <img src="https://raw.githubusercontent.com/aqiill/sagin/refs/heads/main/assets/2.jpeg" alt="About Sagin" class="w-full h-full object-cover aspect-[4/5]">
+            </div>
+            
+            <div class="w-full md:w-7/12 reveal">
+                <h2 class="font-heading text-4xl md:text-5xl text-primary mb-8 relative inline-block">
+                    About Me
+                    <span class="absolute -bottom-2 left-0 w-1/2 h-[1px] bg-accent"></span>
+                </h2>
+                
+                <div class="text-lg text-textdark/80 space-y-6 font-light leading-relaxed">
+                    <p>
+                        "Konten saya berfokus pada makeup look yang natural, fresh, dan mudah diikuti, sehingga audiens bisa langsung mencoba dan menerapkannya dalam keseharian mereka."
+                    </p>
+                    <p>
+                        "Saya percaya makeup bukan hanya tentang tampil cantik, tetapi juga tentang membangun rasa percaya diri melalui perawatan diri yang konsisten."
+                    </p>
+                </div>
+
+                <div class="mt-10 flex flex-wrap gap-3">
+                    <span class="px-4 py-2 border border-secondary/30 text-primary text-sm rounded-full bg-secondary/5">Beauty</span>
+                    <span class="px-4 py-2 border border-secondary/30 text-primary text-sm rounded-full bg-secondary/5">Makeup</span>
+                    <span class="px-4 py-2 border border-secondary/30 text-primary text-sm rounded-full bg-secondary/5">Lifestyle</span>
+                    <span class="px-4 py-2 border border-secondary/30 text-primary text-sm rounded-full bg-secondary/5">Product Review</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience / Performance Section -->
+    <section class="py-20 border-y border-primary/10 px-6 md:px-12 bg-bgivory relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-32 h-32 opacity-10 pointer-events-none">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 0C50 27.6142 27.6142 50 0 50C27.6142 50 50 72.3858 50 100C50 72.3858 72.3858 50 100 50C72.3858 50 50 27.6142 50 0Z" fill="#426B4D"/>
+            </svg>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center reveal">
+            <h2 class="text-xs font-semibold tracking-[0.2em] text-secondary mb-12 uppercase">Audience & Reach</h2>
+            
+            <div id="stats-container" class="grid grid-cols-1 md:grid-cols-3 gap-10 divide-y md:divide-y-0 md:divide-x divide-primary/20">
+                <!-- Injected via JS -->
+            </div>
+            <p class="text-xs text-textdark/50 mt-8 italic">*Data representatif untuk keperluan media kit</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <h2 class="font-heading text-4xl md:text-5xl text-primary mb-4">Services</h2>
+                <p class="text-textdark/70">Creative solutions for brands that want authentic beauty content.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="border-decorative rounded-2xl p-8 bg-bgivory hover:shadow-lg transition-all duration-300 reveal group">
+                    <div class="text-secondary mb-6 group-hover:scale-110 transition-transform origin-left">
+                        <i data-lucide="video" class="w-8 h-8"></i>
+                    </div>
+                    <div class="text-xs font-bold text-accent mb-2">01</div>
+                    <h3 class="font-heading text-2xl text-primary mb-4">TikTok Content</h3>
+                    <p class="text-sm text-textdark/80 leading-relaxed">
+                        Konten TikTok untuk memperkenalkan produk secara natural, engaging, dan sesuai karakter creator.
+                    </p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="border-decorative rounded-2xl p-8 bg-bgivory hover:shadow-lg transition-all duration-300 reveal group" style="transition-delay: 100ms;">
+                    <div class="text-secondary mb-6 group-hover:scale-110 transition-transform origin-left">
+                        <i data-lucide="instagram" class="w-8 h-8"></i>
+                    </div>
+                    <div class="text-xs font-bold text-accent mb-2">02</div>
+                    <h3 class="font-heading text-2xl text-primary mb-4">Instagram Content</h3>
+                    <p class="text-sm text-textdark/80 leading-relaxed">
+                        Instagram Story dan social media content untuk meningkatkan awareness dan product exposure.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="border-decorative rounded-2xl p-8 bg-bgivory hover:shadow-lg transition-all duration-300 reveal group" style="transition-delay: 200ms;">
+                    <div class="text-secondary mb-6 group-hover:scale-110 transition-transform origin-left">
+                        <i data-lucide="sparkles" class="w-8 h-8"></i>
+                    </div>
+                    <div class="text-xs font-bold text-accent mb-2">03</div>
+                    <h3 class="font-heading text-2xl text-primary mb-4">Product Review</h3>
+                    <p class="text-sm text-textdark/80 leading-relaxed">
+                        Review produk dengan pendekatan natural, personal, dan mudah dipercaya audiens.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio / Gallery -->
+    <section id="portfolio" class="py-24 px-6 md:px-12 bg-bgivory">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                <div>
+                    <h2 class="font-heading text-4xl md:text-5xl text-primary mb-2">Selected Works</h2>
+                    <p class="text-textdark/70">A glimpse into recent aesthetic creations.</p>
+                </div>
+            </div>
+
+            <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[60] bg-textdark/95 hidden flex items-center justify-center opacity-0 pointer-events-none">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors" aria-label="Close">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <button id="lightbox-prev" class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors" aria-label="Previous">
+            <i data-lucide="chevron-left" class="w-12 h-12"></i>
+        </button>
+        <button id="lightbox-next" class="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors" aria-label="Next">
+            <i data-lucide="chevron-right" class="w-12 h-12"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Gallery Preview" class="max-h-[85vh] max-w-[90vw] object-contain rounded-md shadow-2xl">
+    </div>
+
+    <!-- TikTok Work Samples -->
+    <section class="py-24 px-6 md:px-12 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-heading text-4xl text-primary mb-4">TikTok Work Samples</h2>
+                <p class="text-textdark/70">Selected TikTok content created for brand collaborations.</p>
+            </div>
+
+            <div id="tiktok-container" class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 justify-items-center">
+                <!-- TikTok embed injected via JS to ensure logic holds -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Rate Card Section -->
+    <section id="ratecard" class="py-24 px-6 md:px-12 bg-bgivory border-t border-primary/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-xs font-semibold tracking-[0.2em] text-secondary mb-4 uppercase">Investment</h2>
+                <h2 class="font-heading text-5xl text-primary mb-4">Rate Card</h2>
+                <p class="text-textdark/70">Transparent pricing for premium content creation.</p>
+            </div>
+
+            <!-- TikTok Packages -->
+            <div class="mb-20">
+                <h3 class="font-heading text-3xl text-primary mb-8 border-b border-primary/20 pb-4">TikTok Packages</h3>
+                <div id="tiktok-packages-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <!-- Instagram Services -->
+            <div class="mb-20">
+                <h3 class="font-heading text-3xl text-primary mb-8 border-b border-primary/20 pb-4">Instagram Services</h3>
+                <div id="ig-packages-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <!-- Volume Saver -->
+            <div class="mb-20">
+                <h3 class="font-heading text-3xl text-primary mb-8 border-b border-primary/20 pb-4">Volume Saver</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+                    <div class="bg-white border-decorative p-6 rounded-xl flex justify-between items-center shadow-sm reveal">
+                        <div>
+                            <h4 class="font-bold text-primary mb-1">Dubbing</h4>
+                            <p class="text-xs text-textdark/70">For >10 Videos</p>
+                        </div>
+                        <span class="font-heading text-lg italic text-secondary">Discuss</span>
+                    </div>
+                    <div class="bg-white border-decorative p-6 rounded-xl flex justify-between items-center shadow-sm reveal">
+                        <div>
+                            <h4 class="font-bold text-primary mb-1">Bulk Editing</h4>
+                            <p class="text-xs text-textdark/70">Video Editing for >10 Videos</p>
+                        </div>
+                        <span class="font-heading text-lg italic text-secondary">Discuss</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package Comparison -->
+            <div class="bg-primary/5 rounded-2xl p-8 md:p-12 reveal">
+                <h3 class="font-heading text-2xl text-primary mb-6 text-center">Which Package Fits Your Campaign?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex gap-4">
+                        <i data-lucide="check-circle-2" class="text-secondary shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-textdark">Essential</h4>
+                            <p class="text-sm text-textdark/70">For simple product exposure and review.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i data-lucide="check-circle-2" class="text-secondary shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-textdark">Standard</h4>
+                            <p class="text-sm text-textdark/70">For campaigns requiring brief + code boost.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i data-lucide="check-circle-2" class="text-secondary shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-textdark">Premium</h4>
+                            <p class="text-sm text-textdark/70">For building sustained momentum with multiple TikTok contents.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i data-lucide="check-circle-2" class="text-secondary shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-textdark">Full Ownership</h4>
+                            <p class="text-sm text-textdark/70">For brands requiring extended usage rights for external ads.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms & Conditions Section -->
+    <section class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-heading text-3xl text-primary mb-10 text-center reveal">Terms & Conditions</h2>
+            <div id="terms-container" class="space-y-4 reveal">
+                <!-- Accordion injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 md:px-12 bg-primary text-white text-center">
+        <div class="max-w-3xl mx-auto reveal">
+            <h2 class="font-heading text-4xl md:text-6xl mb-6">Let's Work Together</h2>
+            <p class="text-bgivory/80 text-lg mb-10 max-w-xl mx-auto">
+                Interested in collaborating? Let's create content that connects your brand with the right audience.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a id="btn-wa" href="#" target="_blank" class="flex items-center justify-center gap-2 px-8 py-3 bg-bgivory text-primary rounded-full font-semibold hover:bg-white transition-colors group">
+                    <i data-lucide="message-circle" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    Chat via WhatsApp
+                </a>
+                <button id="btn-email" class="flex items-center justify-center gap-2 px-8 py-3 bg-transparent border border-bgivory/30 text-bgivory rounded-full font-medium hover:bg-bgivory/10 transition-colors group">
+                    <i data-lucide="mail" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    <span id="email-text">Send Email</span>
+                </button>
+                <a id="btn-tiktok" href="#" target="_blank" class="flex items-center justify-center gap-2 px-8 py-3 bg-transparent border border-bgivory/30 text-bgivory rounded-full font-medium hover:bg-bgivory/10 transition-colors group">
+                    <svg class="w-5 h-5 fill-current group-hover:scale-110 transition-transform" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.23-.9 4.48-2.43 6.06-1.55 1.62-3.83 2.62-6.13 2.58-2.61-.06-5.23-1.32-6.73-3.46-1.46-2.07-1.84-4.83-1.02-7.22.65-1.93 2.11-3.6 3.95-4.5 2.13-.98 4.67-1.11 6.94-.37v4.18c-1.2-.21-2.47-.15-3.56.36-1.09.52-1.92 1.5-2.18 2.67-.28 1.25.04 2.6 1.05 3.39 1.13.88 2.8.96 4.09.28 1.25-.66 2.05-2 2.15-3.41.13-2.66.07-5.33.11-7.99.04-3.15.01-6.3.01-9.45z"/></svg>
+                    View TikTok
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-textdark text-bgivory/70 py-12 px-6 text-center">
+        <h3 class="font-heading text-2xl text-white mb-2 tracking-widest">SAGIN</h3>
+        <p class="text-xs tracking-widest uppercase mb-8">Beauty • Lifestyle • Content Creator</p>
+        
+        <div class="flex justify-center gap-6 mb-8">
+            <a href="#" id="foot-ig" class="hover:text-white transition-colors" target="_blank"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+            <a href="#" id="foot-tiktok" class="hover:text-white transition-colors" target="_blank">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.23-.9 4.48-2.43 6.06-1.55 1.62-3.83 2.62-6.13 2.58-2.61-.06-5.23-1.32-6.73-3.46-1.46-2.07-1.84-4.83-1.02-7.22.65-1.93 2.11-3.6 3.95-4.5 2.13-.98 4.67-1.11 6.94-.37v4.18c-1.2-.21-2.47-.15-3.56.36-1.09.52-1.92 1.5-2.18 2.67-.28 1.25.04 2.6 1.05 3.39 1.13.88 2.8.96 4.09.28 1.25-.66 2.05-2 2.15-3.41.13-2.66.07-5.33.11-7.99.04-3.15.01-6.3.01-9.45z"/></svg>
+            </a>
+            <a href="#" id="foot-wa" class="hover:text-white transition-colors" target="_blank"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+            <a href="#" id="foot-email" class="hover:text-white transition-colors" target="_blank"><i data-lucide="mail" class="w-5 h-5"></i></a>
+        </div>
+
+        <p class="text-xs">&copy; <span id="year"></span> SAGIN. All rights reserved.</p>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 p-3 bg-primary text-white rounded-full shadow-lg opacity-0 translate-y-10 transition-all duration-300 z-40 focus:outline-none hover:bg-textdark" aria-label="Back to top">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        /* ==========================================
+           CONTENT EDITING SYSTEM
+           Edit these objects to update website content
+           ========================================== */
+        
+        const creator = {
+            name: "SAGIN",
+            whatsapp: "+6288277152106",
+            email: "reghinafj@gmail.com",
+            instagram: "@reghinafj",
+            tiktok: "@SAGIN",
+            urls: {
+                wa: "https://wa.me/6288277152106",
+                ig: "https://instagram.com/reghinafj",
+                tiktok: "https://tiktok.com/@SAGIN",
+                email: "mailto:reghinafj@gmail.com"
+            }
+        };
+
+        const audienceStats = [
+            { label: "TikTok Followers", value: 104, suffix: "K++", targetId: "stat-tiktok" },
+            { label: "IG Followers", value: 50, suffix: "K++", targetId: "stat-ig" },
+            { label: "Total Views", value: 69, suffix: "M++", targetId: "stat-views" }
+        ];
+
+        /* Replace these with actual local paths e.g., 'assets/images/gallery-01.jpg' */
+        const galleryImages = [
+            "https://placehold.co/600x750/FAFAF2/426B4D?text=Gallery+01",
+            "https://placehold.co/600x750/FAFAF2/426B4D?text=Gallery+02",
+            "https://placehold.co/600x750/FAFAF2/426B4D?text=Gallery+03",
+            "https://placehold.co/600x750/FAFAF2/426B4D?text=Gallery+04",
+            "https://placehold.co/600x750/FAFAF2/426B4D?text=Gallery+05",
+            "https://placehold.co/600x750/FAFAF2/426B4D?text=Gallery+06"
+        ];
+
+        const tiktokSamples = [
+            {
+                id: "7691296953380097287",
+                label: "VT + YC + CB <br> WITH KOL BRIEF",
+                desc: "1 TikTok Video + Yellow Card + Code Boost<br>with Brand Brief",
+                url: "https://vt.tiktok.com/ZSbqjXmyR/"
+            },
+            {
+                id: "7674223910992317716",
+                label: "1 VT + YC <br> WITHOUT BRAND BRIEF",
+                desc: "1 TikTok Video + Yellow Card<br>without Brand Brief",
+                url: "https://vt.tiktok.com/ZSbq6A2MN/"
+            }
+        ];
+
+        const packages = {
+            tiktok: [
+                {
+                    id: "01",
+                    name: "ESSENTIAL",
+                    features: ["1 TikTok Video", "With & Without Yellow Card"],
+                    price: "Rp1.000.000"
+                },
+                {
+                    id: "02",
+                    name: "STANDARD",
+                    features: ["1 TikTok Video", "With & Without Yellow Card", "+ Brand Brief", "+ Code Boost (365 Days)"],
+                    price: "Rp1.500.000"
+                },
+                {
+                    id: "03",
+                    name: "PREMIUM",
+                    features: ["2 TikTok Videos", "With & Without Yellow Card", "+ Brand Brief", "+ Code Boost (365 Days)"],
+                    price: "Rp2.900.000"
+                },
+                {
+                    id: "04",
+                    name: "EXCLUSIVE",
+                    features: ["More than 2 TikTok Videos", "+ Complete Custom Package"],
+                    price: "Discuss"
+                },
+                {
+                    id: "05",
+                    name: "FULL OWNERSHIP",
+                    features: ["1 TikTok Video", "+ Yellow Card", "+ Brand Brief", "+ Code Boost (365 Days)", "+ Full Rights / Owning"],
+                    price: "Rp2.500.000"
+                }
+            ],
+            instagram: [
+                {
+                    name: "STORY BASIC",
+                    features: ["IG Story Post", "Client's Raw Video / No Feeds"],
+                    price: "Rp350.000"
+                },
+                {
+                    name: "STORY PRO",
+                    features: ["IG Story Post", "+ Professional Video Editing"],
+                    price: "Rp500.000"
+                }
+            ]
+        };
+
+        const termsData = [
+            {
+                title: "1. Mekanisme Kerja Sama",
+                content: "<strong>Briefing:</strong> Brand wajib memberikan creative brief yang jelas maksimal 3–5 hari setelah produk sampai. Perubahan brief setelah konten dibuat dapat dikenakan biaya tambahan (re-shoot fee).<br><br><strong>Produksi:</strong> KOL berhak menjaga orisinalitas gaya bicara dan estetika konten agar tetap relevan dengan audience/pengikut KOL. Draft dikirim 3–5 hari dari produk sampai atau brief diberikan."
+            },
+            {
+                title: "2. Pengiriman Produk",
+                content: "Produk yang akan di-review wajib dikirim oleh Brand selambat-lambatnya 7 hari sebelum jadwal tayang. Biaya pengiriman produk ditanggung sepenuhnya oleh pihak Brand. Produk yang sudah dikirim menjadi milik KOL, kecuali terdapat kesepakatan peminjaman produk di awal."
+            },
+            {
+                title: "3. Hak Cipta & Penggunaan Konten (Usage Rights)",
+                content: "<strong>Hak Siar:</strong> Konten akan diunggah pada akun media sosial pribadi KOL.<br><br><strong>Owning/Whitelisting:</strong> Brand dilarang menggunakan video KOL untuk iklan berbayar (Ads), kecuali disepakati oleh kedua belah pihak. Brand juga tidak diperbolehkan memposting ulang di akun Brand atau menggunakan wajah KOL di media luar ruang (baliho/brosur) tanpa mengambil paket 'Owning' atau memperoleh izin tertulis terlebih dahulu.<br><br><strong>Masa Berlaku:</strong> Untuk paket dengan Code Boost/Whitelisting, hak penggunaan berlaku sesuai durasi paket, contoh 365 hari. Setelah masa berlaku habis, iklan harus dihentikan."
+            },
+            {
+                title: "4. Jadwal Tayang",
+                content: "Konten akan diunggah sesuai dengan jadwal yang telah disepakati bersama. KOL berhak mengatur jam posting (prime time) untuk memaksimalkan performa konten."
+            },
+            {
+                title: "5. Kebijakan Pembayaran",
+                content: "Payment dibayarkan ketika produk sudah sampai ke KOL, dihitung maksimal ±7 hari setelah produk diterima atau sesuai kesepakatan kedua belah pihak.<br><br><strong>Pembatalan:</strong> Jika pembatalan dilakukan sepihak oleh Brand setelah produk dikirim atau proses produksi dimulai, maka produk menjadi milik KOL dan dikenakan denda 50% dari harga kesepakatan awal."
+            },
+            {
+                title: "6. Larangan (Exclusivity & Compliance)",
+                content: "<strong>Eksklusivitas:</strong> Kecuali disebutkan dalam paket, KOL berhak bekerja sama dengan brand lain dalam kategori serupa di waktu yang berbeda.<br><br><strong>Konten Negatif:</strong> KOL tidak bertanggung jawab atas penurunan penjualan atau sentimen negatif publik yang disebabkan oleh kualitas produk atau layanan dari pihak Brand.<br><br><strong>Keamanan Akun:</strong> KOL tidak bertanggung jawab atas perubahan kebijakan platform seperti shadowban atau perubahan algoritma yang berada di luar kendali KOL."
+            },
+            {
+                title: "7. Keadaan Kahar (Force Majeure)",
+                content: "Apabila terjadi hal-hal di luar kendali seperti sakit, kecelakaan, atau bencana alam yang menghambat proses produksi, KOL akan memberikan informasi segera dan melakukan penjadwalan ulang (reschedule)."
+            }
+        ];
+
+        
+        // 1. Render Stats
+        const statsContainer = document.getElementById('stats-container');
+        audienceStats.forEach(stat => {
+            statsContainer.innerHTML += `
+                <div class="py-6">
+                    <div class="font-heading text-5xl md:text-6xl text-primary font-bold mb-2">
+                        <span id="${stat.targetId}" data-target="${stat.value}">0</span>${stat.suffix}
+                    </div>
+                    <div class="text-textdark/60 font-medium tracking-wide uppercase text-sm">${stat.label}</div>
+                </div>
+            `;
+        });
+
+        // 2. Render Gallery
+        const galleryContainer = document.getElementById('gallery-container');
+        galleryImages.forEach((imgSrc, index) => {
+            galleryContainer.innerHTML += `
+                <div class="relative aspect-[4/5] overflow-hidden rounded-xl cursor-pointer group reveal img-zoom-container bg-white shadow-sm" onclick="openLightbox(${index})" tabindex="0" role="button" aria-label="View gallery image ${index + 1}">
+                    <img src="${imgSrc}" loading="lazy" alt="Gallery Work ${index + 1}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i data-lucide="zoom-in" class="text-white w-8 h-8"></i>
+                    </div>
+                </div>
+            `;
+        });
+
+        // 3. Render TikTok Embeds
+        const tiktokContainer = document.getElementById('tiktok-container');
+        tiktokSamples.forEach(sample => {
+            tiktokContainer.innerHTML += `
+                <div class="w-full max-w-[320px] reveal flex flex-col items-center">
+                    <div class="w-full relative pt-[177.77%] bg-bgivory rounded-xl overflow-hidden shadow-lg border border-primary/10 mb-6 group">
+                        <iframe 
+                            src="https://www.tiktok.com/player/v1/${sample.id}" 
+                            class="absolute top-0 left-0 w-full h-full"
+                            allow="autoplay; fullscreen"
+                            title="TikTok Video Sample">
+                        </iframe>
+                        <!-- Fallback overlay if iframe blocked -->
+                        <div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+                    </div>
+                    
+                    <div class="text-center w-full">
+                        <h3 class="font-bold text-sm tracking-widest text-primary mb-2">${sample.label}</h3>
+                        <p class="text-xs text-textdark/70 mb-4 h-10">${sample.desc}</p>
+                        <a href="${sample.url}" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold text-secondary hover:text-primary transition-colors">
+                            Watch on TikTok <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+        });
+
+        // 4. Render Rate Card Packages
+        const tiktokPkgContainer = document.getElementById('tiktok-packages-container');
+        packages.tiktok.forEach(pkg => {
+            let featuresHtml = pkg.features.map(f => `<li class="flex items-start gap-2 mb-2"><i data-lucide="check" class="w-4 h-4 text-secondary shrink-0 mt-0.5"></i><span class="text-sm text-textdark/80">${f}</span></li>`).join('');
+            
+            const cleanWaNumber = creator.whatsapp.replace(/\D/g, ''); // Extract only numbers
+            const waMsg = encodeURIComponent(`Halo SAGIN, saya tertarik untuk kerja sama konten menggunakan paket TikTok: ${pkg.name}. Boleh minta info lebih lanjut?`);
+            
+            tiktokPkgContainer.innerHTML += `
+                <div class="bg-white border-decorative rounded-2xl p-8 flex flex-col h-full hover:shadow-xl transition-all duration-300 reveal relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-secondary/30 group-hover:bg-primary transition-colors"></div>
+                    <div class="text-xs font-bold text-accent mb-2">Package ${pkg.id || ''}</div>
+                    <h4 class="font-heading text-2xl text-primary mb-6">${pkg.name}</h4>
+                    <ul class="flex-grow mb-8">
+                        ${featuresHtml}
+                    </ul>
+                    <div class="font-heading text-2xl font-bold text-primary border-t border-primary/10 pt-6 mb-6">
+                        ${pkg.price}
+                    </div>
+                    <a href="https://wa.me/${cleanWaNumber}?text=${waMsg}" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 bg-primary text-white text-sm font-semibold rounded-full hover:bg-textdark transition-colors mt-auto">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Pilih Paket
+                    </a>
+                </div>
+            `;
+        });
+
+        const igPkgContainer = document.getElementById('ig-packages-container');
+        packages.instagram.forEach(pkg => {
+            let featuresHtml = pkg.features.map(f => `<li class="flex items-start gap-2 mb-2"><i data-lucide="check" class="w-4 h-4 text-secondary shrink-0 mt-0.5"></i><span class="text-sm text-textdark/80">${f}</span></li>`).join('');
+            
+            const cleanWaNumber = creator.whatsapp.replace(/\D/g, '');
+            const waMsg = encodeURIComponent(`Halo SAGIN, saya tertarik untuk kerja sama konten menggunakan paket IG: ${pkg.name}. Boleh minta info lebih lanjut?`);
+
+            igPkgContainer.innerHTML += `
+                <div class="bg-white border-decorative rounded-2xl p-8 flex flex-col h-full hover:shadow-lg transition-shadow reveal">
+                    <h4 class="font-heading text-xl text-primary mb-6">${pkg.name}</h4>
+                    <ul class="flex-grow mb-8">
+                        ${featuresHtml}
+                    </ul>
+                    <div class="font-heading text-xl font-bold text-primary border-t border-primary/10 pt-4 mb-6">
+                        ${pkg.price}
+                    </div>
+                    <a href="https://wa.me/${cleanWaNumber}?text=${waMsg}" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 bg-transparent border border-primary text-primary text-sm font-semibold rounded-full hover:bg-primary/5 transition-colors mt-auto">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Pilih Paket
+                    </a>
+                </div>
+            `;
+        });
+
+        // 5. Render Terms Accordion
+        const termsContainer = document.getElementById('terms-container');
+        termsData.forEach((term, index) => {
+            termsContainer.innerHTML += `
+                <div class="accordion-item border border-primary/10 rounded-xl overflow-hidden bg-bgivory">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none hover:bg-primary/5 transition-colors" onclick="toggleAccordion(${index})" aria-expanded="false">
+                        <span class="font-semibold text-primary">${term.title}</span>
+                        <i data-lucide="chevron-down" class="accordion-icon w-5 h-5 text-secondary"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-white text-sm text-textdark/80 leading-relaxed">
+                        <div class="pt-2">${term.content}</div>
+                    </div>
+                </div>
+            `;
+        });
+
+        
+        // Re-initialize Lucide for injected content
+        lucide.createIcons();
+
+        // Bind Contact Links
+        document.getElementById('btn-wa').href = creator.urls.wa;
+        document.getElementById('btn-tiktok').href = creator.urls.tiktok;
+        document.getElementById('foot-ig').href = creator.urls.ig;
+        document.getElementById('foot-tiktok').href = creator.urls.tiktok;
+        document.getElementById('foot-wa').href = creator.urls.wa;
+        document.getElementById('foot-email').href = creator.urls.email;
+
+        // Copy Email Logic
+        const btnEmail = document.getElementById('btn-email');
+        const emailText = document.getElementById('email-text');
+        btnEmail.addEventListener('click', () => {
+            navigator.clipboard.writeText(creator.email).then(() => {
+                const originalText = emailText.innerText;
+                emailText.innerText = "Email copied!";
+                setTimeout(() => {
+                    emailText.innerText = originalText;
+                }, 2000);
+            }).catch(err => {
+                // Fallback mailto
+                window.location.href = creator.urls.email;
+            });
+        });
+
+        // Mobile Menu Logic
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.add('open');
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                mobileMenu.classList.remove('open');
+                setTimeout(() => {
+                    if(!isMenuOpen) mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                }, 400); // Wait for transition
+            }
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Scroll Effects (Navbar & Back to Top)
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-sm', 'py-3');
+                navbar.classList.remove('py-4');
+                backToTop.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                backToTop.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                navbar.classList.remove('shadow-sm', 'py-3');
+                navbar.classList.add('py-4');
+                backToTop.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                backToTop.classList.remove('opacity-100', 'translate-y-0');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Scroll Reveal Animation via IntersectionObserver
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Counter Animation
+        const statElements = audienceStats.map(s => document.getElementById(s.targetId));
+        let animatedStats = false;
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !animatedStats) {
+                animatedStats = true;
+                statElements.forEach(el => {
+                    if(!el) return;
+                    const target = parseInt(el.getAttribute('data-target'));
+                    let count = 0;
+                    const duration = 2000; 
+                    const increment = target / (duration / 16); // 60fps
+                    
+                    const updateCount = () => {
+                        count += increment;
+                        if (count < target) {
+                            el.innerText = Math.ceil(count);
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            el.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            }
+        }, { threshold: 0.5 });
+        
+        if(document.getElementById('stats-container')) {
+            statsObserver.observe(document.getElementById('stats-container'));
+        }
+
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        let currentImageIndex = 0;
+
+        window.openLightbox = function(index) {
+            currentImageIndex = index;
+            lightboxImg.src = galleryImages[currentImageIndex];
+            lightbox.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0', 'pointer-events-none');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        };
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightboxImg.src = '';
+            }, 300);
+            document.body.style.overflow = '';
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+            lightboxImg.src = galleryImages[currentImageIndex];
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); changeImage(-1); });
+        lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); changeImage(1); });
+        
+        // Close on backdrop click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') changeImage(-1);
+                if (e.key === 'ArrowRight') changeImage(1);
+            }
+        });
+
+        // Accordion Logic
+        window.toggleAccordion = function(index) {
+            const items = document.querySelectorAll('.accordion-item');
+            const item = items[index];
+            const button = item.querySelector('button');
+            const isActive = item.classList.contains('active');
+
+            // Close all
+            items.forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('button').setAttribute('aria-expanded', 'false');
+            });
+
+            // Open clicked if it wasn't already open
+            if (!isActive) {
+                item.classList.add('active');
+                button.setAttribute('aria-expanded', 'true');
+            }
+        };
+
+        /* ==========================================
+           API INTEGRATION FOR REALTIME FOLLOWERS
+           ========================================== */
+        // PANDUAN PENGGUNAAN API (Untuk Developer Anda)
+        // 1. Ganti url endpoint di bawah ini dengan API backend/middleware Anda.
+        // 2. Ganti api_key jika layanan Anda mensyaratkan token.
+        // 3. Uncomment/hapus comment baris "fetchRealtimeStats()" di paling bawah untuk mengaktifkan.
+        
+        const API_CONFIG = {
+            tiktokEndpoint: "https://api.domain-anda.com/v1/tiktok/followers?username=sagin", // <-- TARUH ENDPOINT TIKTOK DISINI
+            instagramEndpoint: "https://api.domain-anda.com/v1/ig/followers?username=reghinafj", // <-- TARUH ENDPOINT IG DISINI
+            apiKey: "ISI_API_KEY_ANDA_DISINI" // <-- TARUH API KEY DISINI JIKA DIPERLUKAN
+        };
+
+        async function fetchRealtimeStats() {
+            try {
+                // Konfigurasi Headers jika ada API KEY
+                const headers = { 
+                    // 'Authorization': `Bearer ${API_CONFIG.apiKey}`,
+                    'Content-Type': 'application/json' 
+                };
+
+                // --- 1. Ambil Data TikTok ---
+                /* 
+                const tiktokRes = await fetch(API_CONFIG.tiktokEndpoint, { headers });
+                const tiktokData = await tiktokRes.json();
+                
+                if (tiktokData && tiktokData.followers) {
+                    const el = document.getElementById('stat-tiktok');
+                    // Contoh logika: jika followers 105200 jadikan "105.2" 
+                    const formatted = (tiktokData.followers / 1000).toFixed(1);
+                    if(el) el.setAttribute('data-target', formatted);
+                }
+                */
+
+                // --- 2. Ambil Data Instagram ---
+                /*
+                const igRes = await fetch(API_CONFIG.instagramEndpoint, { headers });
+                const igData = await igRes.json();
+                
+                if (igData && igData.followers) {
+                    const el = document.getElementById('stat-ig');
+                    const formatted = (igData.followers / 1000).toFixed(1);
+                    if(el) el.setAttribute('data-target', formatted);
+                }
+                */
+
+                console.log("Realtime stats logic is ready. Awaiting API backend configuration.");
+
+            } catch (error) {
+                console.error("Gagal mengambil data follower realtime. Pastikan CORS dan Endpoint valid.", error);
+            }
+        }
+
+        // UNCOMMENT baris di bawah ini untuk mengaktifkan fungsi penarikan data API realtime
+        // fetchRealtimeStats();
+
+    </script>
+</body>
+</html>
